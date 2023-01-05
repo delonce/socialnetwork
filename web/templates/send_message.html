@@ -1,0 +1,30 @@
+{{template "base" .}}
+
+{{define "head"}}
+<link href="/static/css/send_message_style.css" rel="stylesheet" type="text/css">
+{{end}}
+
+{{define "main"}}
+<p><a href="/messages">Назад к диалогам</a></p>
+<div id="allMessages">
+    <p>{{range $num, $message := .AllDialog}}</p>
+
+    <div>
+        <b><p>{{ $message.From }} {{ $message.FormatDate }}</p></b>
+        <p>{{ $message.Text }}</p>
+    </div>
+
+    <p>{{end}}</p>
+</div>
+<script>
+    var el = document.getElementById("allMessages"); // Or whatever method to get the element
+    el.scrollTop += el.scrollHeight;
+</script>
+
+<div id="sendField">
+    <form method="POST">
+      <textarea id="messageField" name="message" placeholder="Ваше сообщение"></textarea>
+      <button id="sendButton" type="submit">Отправить</button>
+    </form>
+</div>
+{{end}}

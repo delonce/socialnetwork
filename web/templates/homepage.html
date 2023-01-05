@@ -1,0 +1,74 @@
+{{template "base" .}}
+
+{{define "head"}}
+
+{{end}}
+
+{{define "main"}}
+	<div class="header_logo">
+			<h1>{{ .CurrentUser.Username }}</h1>
+			<h2>Email: {{ .CurrentUser.Email }}</h2>
+
+			{{if .IsCurrentUser}}
+
+				<div class="friends">
+					<a href="/friends/myfriends"><h2>Мои друзья</h2></a>
+				</div>
+
+				{{if .AmountNewMessages}}
+				<div class="messages">
+					<a href="/messages"><h2>Мои сообщения {{ .AmountNewMessages }}</h2></a>
+				</div>
+				{{else}}
+				<div class="messages">
+					<a href="/messages"><h2>Мои сообщения</h2></a>
+				</div>
+				{{end}}
+
+			{{else}}
+				{{if .IsFriends}}
+					<h3>Вы друзья!</h3>
+					<button type="button"><a href="/messages/{{ .CurrentUser.Username }}">Написать сообщение</a></button>
+					<button type="button"><a href="/users/{{ .CurrentUser.Username }}/denyfriend">Удалить из друзей</a></button>
+
+				{{else if .IsReqToPersonExist}}
+
+					<h3>Заявка в друзья отправлена</h3>
+					<button type="button"><a href="/users/{{ .CurrentUser.Username }}/cancelrequest">Отменить заявку</a></button>
+
+				{{else if .IsReqFromPersonExist}}
+
+					<h3>Этот пользователь хочет добавить вас в друзья</h3>
+
+					<button type="button"><a href="/users/{{ .CurrentUser.Username }}/addfriend">Добавить в друзья</a></button>
+					<button type="button"><a href="/users/{{ .CurrentUser.Username }}/rejectrequest">Отклонить запрос</a></button>
+
+				{{else}}
+
+					<button type="button"><a href="/users/{{ .CurrentUser.Username }}/sendrequest">Добавить в друзья</a></button>
+
+				{{end}}
+
+			{{end}}
+
+	</div>
+
+	<div class="friend_requests">
+		{{ if .FriendRequests}}
+			<a href="/friends/requests"><h3>Новые заявки в друзья: {{len .FriendRequests }}</h3></a>
+		{{else}}
+		{{end}}
+	</div>
+
+	<div class="other_users">
+		{{if .AllUsers}}
+			<h2>Other Users:</h2>
+		{{end}}
+
+			<p>{{range $, $someUser := .AllUsers}}</p> 
+			<p><a href="/users/{{ $someUser.Username }}">{{ $someUser.Username }}</a></p>
+			<p>{{end}}</p>
+
+			<p align="center">New social network</p>
+	</div>
+{{end}}

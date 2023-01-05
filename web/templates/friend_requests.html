@@ -1,0 +1,24 @@
+{{template "base" .}}
+
+{{define "head"}}
+
+{{end}}
+
+{{define "main"}}
+	<div class="friend_requests">
+		<p>{{range $, $request := .FriendRequests}}</p>
+
+		<div>
+			<p><a href="/users/{{ $request.From }}">{{ $request.From }}</a></p>
+
+			<p>
+				<a href="/users/{{ $request.From }}/addfriend"><button>Добавить</button></a>
+				<a href="/users/{{ $request.From }}/denyfriend"><button>Отклонить</button></a>
+			</p>
+		</div>
+
+		<p>{{end}}</p>
+
+		<p align="center">New social network</p>
+	</div>
+{{end}}

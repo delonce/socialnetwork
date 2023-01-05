@@ -1,0 +1,28 @@
+#allMessages {
+    overflow: auto; /* Добавляем полосы прокрутки */
+    width: 800px; /* Ширина блока */
+    height: 500px; /* Высота блока */
+    padding: 5px; /* Поля вокруг текста */
+    border: solid 3px black; /* Параметры рамки */
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#sendField {
+    display: flex;
+    justify-content: center;
+}
+
+#messageField {
+    overflow: auto;
+    width: 500px;
+    height: 50px;
+}
+
+#sendButton {
+    position: relative;
+    bottom: 35%;
+    padding: 5px;
+    width: 100px;
+}

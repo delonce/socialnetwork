@@ -1,0 +1,1 @@
+An extensible Golang social network designed for learning. The main functionality and features of the web application: authentication using JWT, the ability to add users to friends, the ability to chat with friends.

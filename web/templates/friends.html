@@ -1,0 +1,19 @@
+{{template "base" .}}
+
+{{define "head"}}
+
+{{end}}
+
+{{define "main"}}
+	<div class="friends">
+		<p>{{range $, $friendUsername := .Friends}}</p>
+
+		<div>
+			<p><a href="/users/{{ $friendUsername }}">{{ $friendUsername }}</a></p>
+		</div>
+
+		<p>{{end}}</p>
+
+		<p align="center">New social network</p>
+	</div>
+{{end}}

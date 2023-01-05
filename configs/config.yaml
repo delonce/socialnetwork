@@ -1,0 +1,17 @@
+---
+isDebug: false
+http:
+  host: "localhost"
+  port: 8080
+
+tls:
+  isTls: true
+  key: "web/ssl/server.key"
+  cert: "web/ssl/server.crt"
+
+database:
+  address: "192.168.59.114"
+  port: 32017
+  dbname: netdb
+  login: "adminuser"
+  password: "password123"

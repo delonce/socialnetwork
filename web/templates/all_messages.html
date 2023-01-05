@@ -1,0 +1,44 @@
+{{template "base" .}}
+
+{{define "head"}}
+
+{{end}}
+
+{{define "main"}}
+	<div class="messages">
+		{{$username := .CurrentUser}}
+		<p>{{range $, $dialog := .Dialogs}}</p>
+
+		{{if (eq $username $dialog.From)}}
+
+			{{if $dialog.AmountNewMsg}}
+			<div>
+				<p><a href="/messages/{{ $dialog.To }}">{{ $dialog.To }}</a> Сообщение: {{ $dialog.Text }}
+					<b>Количество новых сообщений: {{ $dialog.AmountNewMsg }}</b></p>
+			</div>
+			{{else}}
+			<div>
+				<p><a href="/messages/{{ $dialog.To }}">{{ $dialog.To }}</a> Вы: {{ $dialog.Text }}</p>
+			</div>
+			{{end}}
+
+		{{else}}
+
+			{{if $dialog.AmountNewMsg}}
+			<div>
+				<p><a href="/messages/{{ $dialog.From }}">{{ $dialog.From }}</a> Сообщение: {{ $dialog.Text }}
+					<b>Количество новых сообщений: {{ $dialog.AmountNewMsg }}</b></p>
+			</div>
+			{{else}}
+			<div>
+				<p><a href="/messages/{{ $dialog.From }}">{{ $dialog.From }}</a> {{ $dialog.Text }}</p>
+			</div>
+			{{end}}
+
+		{{end}}
+		
+		{{end}}
+
+		<p align="center">New social network</p>
+	</div>
+{{end}}
